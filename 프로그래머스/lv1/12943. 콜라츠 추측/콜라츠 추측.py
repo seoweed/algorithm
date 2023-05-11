@@ -1,5 +1,4 @@
 def solution(num):
-    answer = 0
     count = 0
     if num == 1:
         return 0;
