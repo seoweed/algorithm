@@ -12,10 +12,10 @@ public class Main {
             s[i] = Integer.parseInt(st.nextToken());
         }
         // 정렬
-        int[] array = Arrays.stream(s).sorted().toArray();
+        Arrays.sort(s);
         int i = 0, j = n-1, count = 0;
         while(i < j) {
-            int sum = array[i] + array[j];
+            int sum = s[i] + s[j];
             if (sum == m) { count++; i++; j--; }
             else if (sum < m) i++;
             else j--;
