@@ -17,6 +17,7 @@ public class Main {
                 count += (K/A[i]);
                 K = K % A[i];
             }
+            if(K == 0) break;
         }
        System.out.println(count);
     }
