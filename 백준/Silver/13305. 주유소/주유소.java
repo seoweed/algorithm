@@ -5,26 +5,22 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] streetLen = new int[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < n; i++) {
-            streetLen[i] = Integer.parseInt(st.nextToken());
-        }
-        int[] literPerPrice = new int[n];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < n; i++) {
-            literPerPrice[i] = Integer.parseInt(st.nextToken());
-        }
-        int len = 0;
-        int startIdx = 0;
-        int res = 0;
+        long[] streetLen = new long[n - 1];
+        long[] literPerPrice = new long[n - 1];
+        StringTokenizer st1 = new StringTokenizer(br.readLine());
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
         for (int i = 0; i < n - 1; i++) {
-            len += streetLen[i + 1];
-            if (literPerPrice[i] >= literPerPrice[i + 1]) {
-                res += literPerPrice[startIdx] * len;
-                startIdx = i + 1;
-                len = 0;
+            streetLen[i] = Long.parseLong(st1.nextToken());
+            literPerPrice[i] = Long.parseLong(st2.nextToken());
+        }
+        long minPrice = literPerPrice[0];
+        long res = minPrice * streetLen[0];
+
+        for (int i = 1; i < n - 1; i++) {
+            if (minPrice >= literPerPrice[i]) {
+                minPrice = literPerPrice[i];
             }
+            res += minPrice * streetLen[i];
         }
         System.out.println(res);
     }
