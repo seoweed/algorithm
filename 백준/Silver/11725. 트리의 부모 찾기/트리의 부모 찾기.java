@@ -5,30 +5,35 @@ public class Main {
     static ArrayList<Integer>[] A;
     static boolean[] visited;
     static int[] result;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        A = new ArrayList[N + 1];
-        for (int i = 0; i <= N; i++) {
+        int n = Integer.parseInt(br.readLine());
+        visited = new boolean[n + 1];
+        A = new ArrayList[n + 1];
+        result = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
             A[i] = new ArrayList<>();
         }
-        for (int i = 0; i < N - 1; i++) {
-            String[] str = br.readLine().split(" ");
-            int a = Integer.parseInt(str[0]);
-            int b = Integer.parseInt(str[1]);
-            A[a].add(b);
-            A[b].add(a);
+        StringTokenizer st;
+        for (int i = 1; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            int s = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            A[s].add(e);
+            A[e].add(s);
         }
-        visited = new boolean[N + 1];
-        result = new int[N + 1];
+
         DFS(1);
-        for (int i = 2; i <= N; i++) {
+        for (int i = 2; i < n + 1; i++) {
             System.out.println(result[i]);
         }
     }
+
     private static void DFS(int v) {
         visited[v] = true;
-        for (int i : A[v]) {
+        for (Integer i : A[v]) {
             if (!visited[i]) {
                 result[i] = v;
                 DFS(i);
@@ -36,4 +41,3 @@ public class Main {
         }
     }
 }
-
