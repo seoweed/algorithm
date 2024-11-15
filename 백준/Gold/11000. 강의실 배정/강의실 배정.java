@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +9,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
+
         int[][] classes = new int[n][2];
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
         StringTokenizer st;
         for (int i = 0; i < n; i++) {
@@ -20,8 +21,6 @@ public class Main {
         }
 
         Arrays.sort(classes, (a, b) -> a[0] - b[0]);
-
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
         pq.offer(classes[0][1]);
 
@@ -33,5 +32,7 @@ public class Main {
         }
 
         System.out.println(pq.size());
+        
+
     }
 }
